@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  bot:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+      target: development
+    volumes:
+      - ../data:/app/data
+      - ../temp:/app/temp
+      - ../src:/app/src
+    env_file:
+      - ../.env
+    environment:
+      - DOCKER_CLIENT_TIMEOUT=120
+      - COMPOSE_HTTP_TIMEOUT=120
+    restart: "no"
+    command: python -m src.bot.main
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4 

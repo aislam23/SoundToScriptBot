@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  bot:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+      target: production
+    volumes:
+      - ../data:/app/data
+      - ../temp:/app/temp
+    env_file:
+      - ../.env
+    restart: always 
