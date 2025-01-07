@@ -1,7 +1,8 @@
 version: '3.8'
 
 services:
-  bot:
+  sound_to_script_bot:
+    container_name: sound_to_script_bot
     build:
       context: ..
       dockerfile: docker/Dockerfile
@@ -11,4 +12,9 @@ services:
       - ../temp:/app/temp
     env_file:
       - ../.env
-    restart: always 
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3" 
